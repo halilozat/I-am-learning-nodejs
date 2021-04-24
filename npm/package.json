@@ -12,5 +12,8 @@
     "express": "^4.17.1",
     "mongoose": "^5.12.5",
     "underscore": "^1.13.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.25.0"
   }
 }
