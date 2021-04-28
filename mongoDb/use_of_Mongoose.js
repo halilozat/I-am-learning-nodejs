@@ -13,3 +13,4 @@ const User = mongoose.model('user',userSchema)
 const halil = User({name:'Halil'})
 
 halil.save().then(result => console.log(result)).catch(err => console.log(err))
+
