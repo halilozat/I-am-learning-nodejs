@@ -5,7 +5,7 @@ mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true, useUnified
     console.log("Database connection is succesful");
 }).catch(err => console.log('BDatabase connection error:' + err));
 
-const UserSchema = new Schema({_id:String}, {collection:'user'})
+const UserSchema = new Schema({_id:String, age:Number, eyeColor:String}, {collection:'user'})
 const User = mongoose.model('user', UserSchema)
 
 
@@ -55,3 +55,14 @@ User.find()
     .skip((pageNumber-1)*pageNumber)
     .limit(postPerPage)
     .then(result=>console.log(result))
+
+
+//Update and Delete
+
+User.findByIdAndUpdate('60898ec74a344114fd591f2c',{$set: {age:45}},{new:true, lean:true}).then(result=>console.log(result))
+
+User.updateOne({index:5},{eyeColor:'Kahverengi'}).then(result=>console.log(result))
+
+User.deleteMany({index: {$lte:3}}).then(result=>console.log(result))
+
+
