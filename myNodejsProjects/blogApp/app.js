@@ -5,6 +5,7 @@ const expressLayout = require('express-ejs-layouts')
 const ejs = require('ejs')
 const blogRouter = require('./src/routers/blogRouter')
 
+app.use(express.static('public'))
 app.use(expressLayout)
 app.set('view engine', 'ejs')
 app.set('views', path.resolve(__dirname,'./src/views'))
