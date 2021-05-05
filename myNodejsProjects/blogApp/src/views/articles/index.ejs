@@ -1,1 +1,14 @@
-<h1>All Articles</h1>
+<%- include('../partials/_header') %> 
+
+<div class="columns is-multiline">
+<% articles.forEach(article => { %>
+    
+
+    <div class="column is-4">
+        <%- include('../partials/_article_Card')  %> 
+    </div>
+    
+<% }) %>
+</div>
+
+

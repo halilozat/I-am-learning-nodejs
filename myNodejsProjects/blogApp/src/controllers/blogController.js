@@ -1,11 +1,11 @@
 const axios = require('axios')
 
-const getAllArticle = async (req,res) => {
-    
+const getAllArticle = async (req,res) => {  
     try {
 
         const blogAPI = await axios.get('https://emrealtunbilek.com/wp-json/wp/v2/posts')
-        
+        res.render('./articles/index',{articles: blogAPI.data})
+
     } catch (error) {
         console.log(error.response.data);
         console.log(error.response.status);
@@ -14,8 +14,7 @@ const getAllArticle = async (req,res) => {
         message: 'Error: '+ error.response.data
     
     })
-    }
-    res.render('./articles/index.ejs')
+    }   
 }
 
 const getSingleArticle = async (req,res) => {
