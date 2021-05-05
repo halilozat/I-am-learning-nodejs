@@ -3,9 +3,9 @@ const blogController = require('../controllers/blogController')
 
 router.get('/', blogController.getAllArticle)
 router.get('/:articleID', blogController.getSingleArticle)
-//router.get('/blog', blogController.getAllArticle)
 
 
+router.post('/',blogController.search)
 
 
 module.exports = router

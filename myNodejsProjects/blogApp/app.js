@@ -10,8 +10,13 @@ app.use(expressLayout)
 app.set('view engine', 'ejs')
 app.set('views', path.resolve(__dirname,'./src/views'))
 
+//Allows node.js to understand the data sent from the form (search)
+app.use(express.urlencoded({extended:true}))
+
 app.use('/', blogRouter)
 app.use('/blog', blogRouter)
+
+
 
 
 app.listen(3003, () => {

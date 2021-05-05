@@ -34,7 +34,28 @@ const getSingleArticle = async (req,res) => {
     }
 }
 
+const search = async (req,res) => {  
+
+    const wordToSearch = req.body.search
+
+    try {
+
+        const blogAPI = await axios.get('https://emrealtunbilek.com/wp-json/wp/v2/posts?search='+wordToSearch)
+        res.render('./articles/index',{articles: blogAPI.data})
+
+    } catch (error) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.header);
+        res.json({
+        message: 'Error: '+ error.response.data
+    
+    })
+    }   
+}
+
 module.exports = {
     getAllArticle,
-    getSingleArticle
+    getSingleArticle,
+    search
 }
