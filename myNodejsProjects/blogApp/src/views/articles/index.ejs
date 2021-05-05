@@ -1,11 +1,11 @@
 <%- include('../partials/_header') %> 
 
 <div class="columns is-multiline">
-<% articles.forEach(article => { %>
+<% articles.forEach((article,index) => { %>
     
 
     <div class="column is-4">
-        <%- include('../partials/_article_Card')  %> 
+        <%- include('../partials/_article_Card',{article,index})  %> 
     </div>
     
 <% }) %>

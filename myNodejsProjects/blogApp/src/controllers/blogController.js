@@ -22,7 +22,7 @@ const getSingleArticle = async (req,res) => {
     try {
         const singleArticle = await axios.get('https://emrealtunbilek.com/wp-json/wp/v2/posts/'+articleID)
     
-        res.render('./articles/article')
+        res.render('./articles/article',{article: singleArticle.data})
     } catch (error) {
         console.log(error.response.data);
         console.log(error.response.status);
