@@ -2,8 +2,6 @@
 
 <div class="columns is-multiline">
 <% articles.forEach((article,index) => { %>
-    
-
     <div class="column is-4">
         <%- include('../partials/_article_Card',{article,index})  %> 
     </div>
@@ -11,5 +9,12 @@
 <% }) %>
 </div>
 
-<%- include('../partials/_pagination') %> 
+
+<% 
+    const numberOfPage = pagination['x-wp-totalpages']
+    const totalData = pagination['x-wp-total']
+    const isActivePage = activePage
+%> 
+
+<%- include('../partials/_pagination', {numberOfPage,totalData,isActivePage}) %> 
 <div class="block"></div>

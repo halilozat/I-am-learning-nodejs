@@ -1,18 +1,23 @@
 const axios = require('axios')
 
-const getAllArticle = async (req,res) => {  
+const getAllArticle = async (req,res) => {
+    let pagination = ""
+    let activePage = 1
+    
+    if(req.query.page){
+        pagination = "page="+req.query.page
+        activePage = req.query.page
+    }
+    
     try {
 
-        const blogAPI = await axios.get('https://emrealtunbilek.com/wp-json/wp/v2/posts')
-        res.render('./articles/index',{articles: blogAPI.data})
+        const blogAPI = await axios.get('https://emrealtunbilek.com/wp-json/wp/v2/posts?per_page=20&'+pagination)
+        res.render('./articles/index',{articles: blogAPI.data, pagination: blogAPI.headers, activePage:activePage})
 
-    } catch (error) {
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.header);
+    } catch (error) {  
+        
         res.json({
         message: 'Error: '+ error.response.data
-    
     })
     }   
 }
@@ -24,10 +29,7 @@ const getSingleArticle = async (req,res) => {
     
         res.render('./articles/article',{article: singleArticle.data})
     } catch (error) {
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.header);
-
+        
         res.json({
             message: 'Error: '+ error.response.data
         })

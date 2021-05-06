@@ -5,7 +5,15 @@ if (index == undefined) {
   height = '600'
 //If index is not undefined, all article is shown
 } else {
-  height = "60"+index
+  const mode = index %10
+
+  if (mode===0) {
+    height='600'
+  }else{
+    height = "60"+mode
+  }
+
+  
 }
 %> 
 
@@ -31,7 +39,7 @@ if (index == undefined) {
 
 
           <% let articleContent = article.excerpt.rendered
-             let summary = articleContent.slice(0,150)
+             let summary = articleContent.slice(0,50)
           %> 
         <%- index==undefined ? article.content.rendered : summary %>
 
